@@ -447,6 +447,11 @@
       margin-top: calc(var(--spacing) * 0);
     }
   }
+  .md\:mt-10 {
+    @media (width >= 48rem) {
+      margin-top: calc(var(--spacing) * 10);
+    }
+  }
   .md\:-ml-0 {
     @media (width >= 48rem) {
       margin-left: calc(var(--spacing) * -0);
