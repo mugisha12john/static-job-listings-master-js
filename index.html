@@ -21,7 +21,7 @@
         class="h-25 w-full bg-[url('/images/bg-header-mobile.svg')] md:bg-[url('/images/bg-header-desktop.svg')]"
       ></div>
       <!-- job cards goes here -->
-      <div class="w-full bg-white">
+      <div id="job-list" class="w-full bg-white">
         <section
           class="flex flex-col md:flex-row mx-auto w-[330px] md:justify-between mt-10 border-l-6 border-[#5da5a4] items-center md:w-2/3 md:mx-auto md:p-6 bg-white shadow-[#5da5a4] shadow-md rounded-md"
         >
@@ -58,7 +58,9 @@
           </div>
           <hr class="mt-5 border w-[250px] -ml-4 border-gray-300 md:hidden" />
           <div class="flex flex-wrap m-5 md:flex-nowrap space-x-4">
-            <button class="bg-gray-100 p-2 font-semibold text-[#5da5a4]">
+            <button
+              class="bg-gray-100 p-2 font-semibold hover:cursor-pointer hover:bg-[#5da5a4] hover:text-white text-[#5da5a4]"
+            >
               Frontend
             </button>
             <button class="bg-gray-100 p-2 font-semibold text-[#5da5a4]">
