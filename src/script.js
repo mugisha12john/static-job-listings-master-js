@@ -50,7 +50,7 @@ fetchJobs()
                     </div>
                 </div>
             </div>
-            <hr class="my-4 border-gray-300 w-full md:hidden"/>
+            <hr class="my-4 border border-gray-300 w-full md:hidden"/>
             <div class="flex flex-wrap m-5 md:flex-nowrap space-x-4">
                 <button class="bg-gray-100 hover:cursor-pointer hover:bg-[#5da5a4] hover:text-white p-2 font-semibold text-[#5da5a4]">
                     ${job.role}
