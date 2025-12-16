@@ -38,7 +38,7 @@ fetchJobs()
                             : ""
                         }
                     </div>
-                    <h1 class="font-bold text-sm md:text-xl  cursor-pointer">${
+                    <h1 class="font-bold hover:text-[#5da5a4] text-sm md:text-xl  cursor-pointer">${
                       job.position
                     }</h1>
                     <div class="flex space-x-4 mt-2 text-gray-400 font-medium">
