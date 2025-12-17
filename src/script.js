@@ -58,16 +58,20 @@ fetchJobs()
             </div>
             <hr class="my-4 border border-gray-300 w-full md:hidden"/>
             <div class="flex flex-wrap m-5 md:flex-nowrap space-x-4">
-                <button class="bg-gray-100 hover:cursor-pointer hover:bg-[#5da5a4] hover:text-white p-2 font-semibold text-[#5da5a4]">
+                <button data-filter="${
+                  job.role
+                }" class="filter-btn bg-gray-100 hover:cursor-pointer hover:bg-[#5da5a4] hover:text-white p-2 font-semibold text-[#5da5a4]">
                     ${job.role}
                 </button>
-                <button class="bg-gray-100 hover:cursor-pointer hover:bg-[#5da5a4] hover:text-white p-2 font-semibold text-[#5da5a4]">
+                <button data-filter="${
+                  job.level
+                }" class="filter-btn bg-gray-100 hover:cursor-pointer hover:bg-[#5da5a4] hover:text-white p-2 font-semibold text-[#5da5a4]">
                     ${job.level}
                 </button>
                 ${job.languages
                   .map(
                     (lang) =>
-                      `<button class="bg-gray-100 hover:cursor-pointer hover:bg-[#5da5a4] hover:text-white p-2 font-semibold text-[#5da5a4]">${lang}</button>`
+                      `<button data-filter="${lang}" class="filter-btn bg-gray-100 hover:cursor-pointer hover:bg-[#5da5a4] hover:text-white p-2 font-semibold text-[#5da5a4]">${lang}</button>`
                   )
                   .join("")}
                 
