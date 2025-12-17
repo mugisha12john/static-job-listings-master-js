@@ -85,6 +85,55 @@ fetchJobs()
     const filterBox = document.getElementById("filter-box");
     //get all filter buttons
     const filterButtons = document.querySelectorAll(".filter-btn");
+    filterButtons.forEach((button) => {
+      button.onclick = () => {
+        filterBox.style.display = "flex";
+        const filterValue = button.getAttribute("data-filter");
+        //check if filter already exists
+        const existingFilter = document.querySelector(
+          `#active-filter button[data-filter="${filterValue}"]`
+        );
+        if (!existingFilter) {
+          const filterItem = document.createElement("button");
+          filterItem.className =
+            "bg-gray-200 flex justify-center items-center gap-10";
+          filterItem.setAttribute("data-filter", filterValue);
+          filterItem.innerHTML = `
+                    <span class="text-[#5da5a4] font-semibold ml-2">${filterValue}</span>
+                    <button class="bg-[#5da5a4] hover:bg-[#234241] text-white font-bold p-1 w-10 hover:cursor-pointer">X</button>
+                `;
+          //add remove functionality
+          filterItem.querySelector("button").onclick = () => {
+            filterItem.remove();
+            //if no filters left, hide filter box
+            if (activeFilter.children.length === 0) {
+              filterBox.style.display = "none";
+            }
+            applyFilters();
+          };
+          activeFilter.appendChild(filterItem);
+          applyFilters();
+        }
+      };
+    });
+    function applyFilters() {
+      const activeFilters = Array.from(
+        activeFilter.querySelectorAll("button")
+      ).map((btn) => btn.getAttribute("data-filter"));
+      const jobCards = document.querySelectorAll(".jobs");
+      jobCards.forEach((card) => {
+        const cardFilters = [
+          card.getAttribute("data-role"),
+          card.getAttribute("data-level"),
+          ...card.getAttribute("data-language").split(" "),
+          ...card.getAttribute("data-tools").split(""),
+        ];
+        const isVisible = activeFilters.every((filter) =>
+          cardFilters.includes(filter)
+        );
+        card.style.display = isVisible ? "flex" : "none";
+      });
+    }
     function getJobs() {
       return document.querySelectorAll(".jobs");
     }
@@ -96,4 +145,3 @@ fetchJobs()
 document.getElementById("clear-btn").onclick = () => {
   alert("Clear button clicked");
 };
-
