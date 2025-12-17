@@ -14,12 +14,12 @@ fetchJobs()
     jobList.innerHTML = ""; // Clear existing content
     jobs.forEach((job) => {
       const jobCard = document.createElement("section");
-      jobCard.className = `flex flex-col data-role="${job.role}" data-level="${
-        job.level
-      }" data-language="${job.languages.join(
-        ","
+      jobCard.className = `jobs flex flex-col data-role="${
+        job.role
+      }" data-level="${job.level}" data-language="${job.languages.join(
+        " "
       )}" data-tools="${job.tools.join(
-        ","
+        ""
       )}" md:flex-row mx-auto w-[330px] md:justify-between mt-10 ${
         job.featured ? "border-l-6 border-[#5da5a4]" : ""
       } items-center md:w-2/3 md:mx-auto md:p-6 bg-white shadow-[#5da5a4] shadow-md rounded-md`;
@@ -79,7 +79,21 @@ fetchJobs()
         `;
       jobList.appendChild(jobCard);
     });
+    //active filter items container
+    const activeFilter = document.getElementById("active-filter");
+    // toggle filter box visibility
+    const filterBox = document.getElementById("filter-box");
+    //get all filter buttons
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    function getJobs() {
+      return document.querySelectorAll(".jobs");
+    }
+    console.log(getJobs());
   })
   .catch((error) => {
     console.error("Error processing jobs:", error);
   });
+document.getElementById("clear-btn").onclick = () => {
+  alert("Clear button clicked");
+};
+
