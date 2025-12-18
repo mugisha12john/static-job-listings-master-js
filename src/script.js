@@ -14,15 +14,20 @@ fetchJobs()
     jobList.innerHTML = ""; // Clear existing content
     jobs.forEach((job) => {
       const jobCard = document.createElement("section");
-      jobCard.className = `jobs flex flex-col data-role="${
-        job.role
-      }" data-level="${job.level}" data-language="${job.languages.join(
-        " "
-      )}" data-tools="${job.tools.join(
-        ""
-      )}" md:flex-row mx-auto w-[330px] md:justify-between mt-10 ${
-        job.featured ? "border-l-6 border-[#5da5a4]" : ""
-      } items-center md:w-2/3 md:mx-auto md:p-6 bg-white shadow-[#5da5a4] shadow-md rounded-md`;
+      jobCard.className =
+        jobCard.className = `jobs flex flex-col md:flex-row mx-auto w-[330px]
+                            md:justify-between mt-10 items-center md:w-2/3 md:p-6
+                            bg-white shadow-[#5da5a4] shadow-md rounded-md
+                            ${
+                              job.featured ? "border-l-6 border-[#5da5a4]" : ""
+                            }`;
+      jobCard.dataset.role = job.role.toLowerCase();
+      jobCard.dataset.level = job.level.toLowerCase();
+      jobCard.dataset.language = job.languages
+        .map((l) => l.toLowerCase())
+        .join(" ");
+      jobCard.dataset.tools = job.tools.map((t) => t.toLowerCase()).join(" ");
+
       jobCard.innerHTML = `
             <div class="flex flex-col md:flex-row space-x-7">
                 <img src="${job.logo}" alt="${
@@ -124,19 +129,23 @@ fetchJobs()
     };
     function applyFilters() {
       const activeFilters = Array.from(
-        activeFilter.querySelectorAll("button")
-      ).map((btn) => btn.getAttribute("data-filter"));
-      const jobCards = document.querySelectorAll(".jobs");
+        activeFilter.querySelectorAll("button[data-filter]")
+      ).map((btn) => btn.dataset.filter.toLowerCase());
+
+      const jobCards = document.querySelectorAll("#job-list section");
+
       jobCards.forEach((card) => {
         const cardFilters = [
-          card.getAttribute("data-role"),
-          card.getAttribute("data-level"),
-          ...card.getAttribute("data-language").split(" "),
-          ...card.getAttribute("data-tools").split(""),
+          card.dataset.role,
+          card.dataset.level,
+          ...card.dataset.language.split(" "),
+          ...card.dataset.tools.split(" "),
         ];
+
         const isVisible = activeFilters.every((filter) =>
           cardFilters.includes(filter)
         );
+
         card.style.display = isVisible ? "flex" : "none";
       });
     }
