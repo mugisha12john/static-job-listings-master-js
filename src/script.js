@@ -29,7 +29,7 @@ fetchJobs()
       jobCard.dataset.tools = job.tools.map((t) => t.toLowerCase()).join(" ");
 
       jobCard.innerHTML = `
-            <div class="flex flex-col md:flex-row space-x-7">
+            <div class="flex flex-col md:flex-row mt-10 space-x-7">
                 <img src="${job.logo}" alt="${
         job.company
       } logo" class="h-16 w-16 md:h-24 md:w-24 -mt-10 md:mt-0"/>
@@ -62,7 +62,7 @@ fetchJobs()
                 </div>
             </div>
             <hr class="my-4 border border-gray-300 w-full md:hidden"/>
-            <div class="flex flex-wrap m-5 md:flex-nowrap space-x-4">
+            <div class="flex flex-wrap m-5 gap-2 md:flex-nowrap space-x-4">
                 <button data-filter="${
                   job.role
                 }" class="filter-btn bg-gray-100 hover:cursor-pointer hover:bg-[#5da5a4] hover:text-white p-2 font-semibold text-[#5da5a4]">
